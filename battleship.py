@@ -38,7 +38,7 @@ def ship_ok( board, row, col):
         return False
 
 
-# Add a ship to the ansBoard
+#### Add a ship to the ansBoard #####
 def add_ship( board, shipSize):
     row = random_row( board)
     col = random_col( board)
@@ -58,37 +58,72 @@ def add_ship( board, shipSize):
     if( direction == 0):  
         vert = True
         down = True
+        up = True
         
         if( row + count >= maxSize):  # if it can't fit going down
             down = False
+        if( row - count < 0):  # can't fit going up
+            up = False
+        if( down == False and up == False):  # can't go up or down
+            vert = False
         else:
-            for i in range( 1, shipSize):  # check down for Xs
-                if board[row + i][col] == "X":
+            for i in range( 1, count):  # check down for Xs
+                if( board[row + i][col] == "X"):
+                    down = False
+                    break
+            for i in range( 1, count):  # check up for Xa
+                if( board[row - i][col] == "X"):
+                    up = False
                     vert = False
                     break
-        if( vert == True and down == True):  # is room and no Xs
+        #if( vert == True and down == True):  # is room and no Xs
+        if( down == True):  # is room and no Xs
             print "num vert segments = ", count
             while( count > 0):
                 board[row + count][col] = "X"
                 count -= 1
+            return###################
+        if( up == True):  # is room and no Xs
+            print "num vert segments = ", count
+            while( count > 0):
+                board[row - count][col] = "X"
+                count -= 1
+            return###################
         
     # horizontal    
-    else:  
+    if( direction == 1 or vert == False):  
         horiz = True
         right = True
+        left = True
 
         if( col + count >= maxSize):  # if it can't fit going right
             right = False
+        if( col - count < 0):  # can't fit going left
+            left = False
+        if( right == False and left == False):
+            return #########DO SOMETHING DIFFERENT HERE.. try vertical??
         else:
-            for i in range( 1, shipSize):  # check to right for Xs
+            for i in range( 1, count):  # check to right for Xs
                 if board[row][col + i] == "X":
+                    right = False
+                    break
+            for i in range( 1, count):  # check to left for Xs
+                if board[row][col - i] == "X":
+                    left = False
                     horiz = False
                     break
-        if( horiz == True and right == True):  # is room and no Xs
+        if( right == True):  # is room and no Xs
             print "num horiz segments = ", count
             while( count > 0):
                 board[row][col + count] = "X"
                 count -= 1
+            return#######################
+        if( left == True):  # is room and no Xs
+            print "num horiz segments = ", count
+            while( count > 0):
+                board[row][col - count] = "X"
+                count -= 1
+            return#######################
 """           
     while( count < shipSize):
         if( direction == 0):
