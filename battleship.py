@@ -30,12 +30,20 @@ def random_col(board):
     return randint( 0, len( board[0]) - 1)
 
 
+<<<<<<< HEAD
 """# Check for free space
+=======
+# Check for free space
+>>>>>>> b1bf1c3ef7ce4505511db4bd5846e0b76e0b7c0f
 def ship_ok( board, row, col):
     if( board[row][col] == "X"):
         return True
     else:
+<<<<<<< HEAD
         return False"""
+=======
+        return False
+>>>>>>> b1bf1c3ef7ce4505511db4bd5846e0b76e0b7c0f
 
 
 #### Add a ship to the ansBoard #####
