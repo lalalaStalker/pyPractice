@@ -1,4 +1,3 @@
-#BATTLESHIP!
 from random import randint
 
 maxSize = 8  # Dimension of battlefield
